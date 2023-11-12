@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>Ratio Simplifier</title>
+</head>
+<body>
+  <h1>Ratio Simplifier</h1>
+  <p>Enter a ratio in the form of a:b and click the button to simplify it.</p>
+  <input id="ratio" type="text" placeholder="Enter a ratio">
+  <button onclick="simplify()">Simplify</button>
+  <p id="result"></p>
+  <script>
+    function simplify() {
+      // Get the input value
+      var ratio = document.getElementById("ratio").value;
+      // Split the ratio by :
+      var parts = ratio.split(":");
+      // Convert the parts to numbers
+      var a = Number(parts[0]);
+      var b = Number(parts[1]);
+      // Find the greatest common divisor of a and b
+      var gcd = function(a, b) {
+        if (b == 0) {
+          return a;
+        } else {
+          return gcd(b, a % b);
+        }
+      };
+      // Divide both parts by the gcd
+      var c = a / gcd(a, b);
+      var d = b / gcd(a, b);
+      // Display the simplified ratio
+      document.getElementById("result").innerHTML = "The simplified ratio is " + c + ":" + d;
+    }
+  </script>
+</body>
+</html>
+
